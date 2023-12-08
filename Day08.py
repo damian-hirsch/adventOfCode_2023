@@ -55,7 +55,9 @@ def part_two(instructions: list, mapper: dict) -> int:
         # the same instruction (in the entire string of instructions, same string position) has been seen before --> we
         # found a cycle. Note that here we have complete cycles, meaning that the first position after the starting
         # position is already part of the cycle would that not be the case, we need to find the path length to the cycle
-        # and our LCM calculations would need to consider that.
+        # and our LCM calculations would need to consider that. There could also be a case, where a step that doesn't
+        # complete a cycle could resonate with a complete solution. This would also make the problem harder.
+        # Fortunately, this also doesn't seem to be the case here.
         while not (prev_pos.endswith('Z') and (new_pos, prev_index) in visited):
             # Save prev pos to check later if it ended with a Z
             prev_pos = new_pos
