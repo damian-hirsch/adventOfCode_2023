@@ -44,7 +44,7 @@ def part_two(data: list) -> int:
         # Once we found the list with all zeros
         else:
             new_result = 0
-            # Cycle through forwards and subtract the current result from the first value in the list (only difference
+            # Cycle through backwards and subtract the current result from the first value in the list (only difference
             # to part 1)
             for difference in difference_list[::-1]:
                 new_result = difference[0] - new_result
