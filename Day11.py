@@ -6,7 +6,9 @@ def get_input() -> np.ndarray:
     with open('input/Day11.txt', 'r') as file:
         # Split lines
         data = file.read().splitlines()
-        observed = np.full((len(data), len(data[0])), '', dtype='U1')
+        # Initialize np array
+        observed = np.full((len(data), len(data[0])), '', dtype='<U1')
+        # Fill the np array
         for i, line in enumerate(data):
             observed[i, :] = list(line)
     return observed
