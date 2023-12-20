@@ -24,16 +24,19 @@ def get_input() -> dict:
             # Conjunction
             elif module_type == '&':
                 module_dict[module_name] = ('&', connections, {})
+                # Create conjunction list for second part (see below)
                 conjunction_list.append(module_name)
             else:
                 print('Unknown module type')
-        # We need to go through the list a second time to build the receiver connections to the conjunction modules.
-        # This cannot be done above, because we don't know at that point which conjunction models even exist
+        # We need to go through the list a second time to build the incoming connections to the conjunction modules.
+        # This cannot be done above, because we don't know at that point which conjunction models even exist.
         for line in data:
             type_name, connections = line.split(' -> ')
             module_name = type_name[1:]
             connections = connections.split(', ')
             for connection in connections:
+                # If the connection is in the conjunction list, it is a conjunction. Thus, we need to add the current
+                # module to incoming connections with a default state of low pulse.
                 if connection in conjunction_list:
                     module_dict[connection][2][module_name] = 0
     return module_dict
