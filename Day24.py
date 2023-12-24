@@ -1,5 +1,5 @@
 import numpy as np
-import sympy
+from sympy import symbols, solve
 
 
 # Get data from .txt file
@@ -53,7 +53,7 @@ def part_one(pos: np.ndarray, vel: np.ndarray) -> int:
 
 # Solves part 2
 def part_two(pos: list, vel: list) -> int:
-    x, y, z, vx, vy, vz = sympy.symbols('x y z vx vy vz', integer=True)
+    x, y, z, vx, vy, vz = symbols('x y z vx vy vz', integer=True)
 
     equations = []
     answers = []
@@ -71,7 +71,7 @@ def part_two(pos: list, vel: list) -> int:
             continue
         # Calculate an answer
         else:
-            answers = sympy.solve(equations)
+            answers = solve(equations)
             # If we found a single answer, we are done. Else, for example if we have equivalent equations, which lead
             # multiple solutions, we continue to add more. This is unlikely though, because we already have 9 equations
             # to work with to solve for 6 variables and 1 direction.
